@@ -36,6 +36,7 @@
         border-radius: 5px;
         cursor: pointer;
         transition: transform 0.3s ease;
+        margin: 10px;
       }
 
       .btn-custom:hover {
@@ -62,6 +63,14 @@
     <!-- Section 1: Start Button -->
     <div id="start-section" class="section active">
       <button class="btn-custom" id="start-btn">Start Learning</button>
+      <button
+        class="btn-custom"
+        id="assessment-btn"
+        data-bs-toggle="modal"
+        data-bs-target="#assessment-modal"
+      >
+        Assessment
+      </button>
     </div>
 
     <!-- Section 2: About Us -->
@@ -81,41 +90,85 @@
       <p>Loading your VR experience...</p>
     </div>
 
-    <audio id="welcome-audio" src="assets\f3aef7b9e10a4176b8677d376aae74ed.mp3"></audio>
+    <!-- Assessment Modal -->
+    <div
+      class="modal fade"
+      id="assessment-modal"
+      tabindex="-1"
+      aria-labelledby="assessmentModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="assessmentModalLabel">
+              Instructor Assessment
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Welcome! Are you ready to take the assessment? Kindly press Start
+              if you are ready, or press Review if you are not.
+            </p>
+            <button class="btn btn-primary" id="start-quiz-btn">
+              Start Quiz
+            </button>
+            <button class="btn btn-secondary" id="review-more-btn">
+              Review More
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio
+      id="welcome-audio"
+      src="assets\f3aef7b9e10a4176b8677d376aae74ed.mp3"
+    ></audio>
 
     <script>
       const startBtn = document.getElementById("start-btn");
+      const assessmentBtn = document.getElementById("assessment-btn");
+      const startQuizBtn = document.getElementById("start-quiz-btn");
+      const reviewMoreBtn = document.getElementById("review-more-btn");
+
       const startSection = document.getElementById("start-section");
       const aboutUsSection = document.getElementById("about-us-section");
       const loadingSection = document.getElementById("loading-section");
       const welcomeAudio = document.getElementById("welcome-audio");
 
       startBtn.addEventListener("click", () => {
-        // Hide the start button section
-        startSection.classList.remove("active");
+        // Redirect to assessment.html
+        window.location.href = "assessment.html";
+      });
 
-        // Show the About Us section
-        aboutUsSection.classList.add("active");
+      startQuizBtn.addEventListener("click", () => {
+        // Redirect to assessment.html
+        window.location.href = "assement.html";
+      });
 
-        // Play the welcoming audio
-        welcomeAudio.play();
-
-        // Hide the About Us section after 5 seconds
-        setTimeout(() => {
-          aboutUsSection.classList.remove("active");
-
-          // Show the loading section
-          loadingSection.classList.add("active");
-
-          // Redirect to the VR room after 3 seconds of loading
-          setTimeout(() => {
-            window.location.href = "vr.html"; // Replace with your VR room URL
-          }, 10000);
-        }, 1000);
+      reviewMoreBtn.addEventListener("click", () => {
+        // Redirect to vr.html
+        window.location.href = "vr.html";
       });
     </script>
 
-    <!-- Bootstrap JS (Optional for interactive components) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

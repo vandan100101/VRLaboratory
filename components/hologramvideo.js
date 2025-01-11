@@ -1,7 +1,21 @@
+// Function to pause all videos except the currently interacted one
+function pauseOtherVideos(currentVideoId) {
+  const videos = document.querySelectorAll("video");
+  videos.forEach((video) => {
+    if (video.id !== currentVideoId && !video.paused) {
+      video.pause();
+      console.log(`Paused ${video.id}`);
+    }
+  });
+}
+
+// Event listener for the first video
 document.querySelector(".clickable").addEventListener("click", () => {
   const video = document.querySelector("#video1");
 
   console.log("Video 1 interactive box clicked!"); // Confirm interaction
+
+  pauseOtherVideos("video1"); // Pause other videos
 
   if (video.paused) {
     video
@@ -18,10 +32,13 @@ document.querySelector(".clickable").addEventListener("click", () => {
   }
 });
 
+// Event listener for the second video
 document.querySelector(".clickable2").addEventListener("click", () => {
   const video2 = document.querySelector("#video2");
 
   console.log("Video 2 interactive box clicked!"); // Confirm interaction
+
+  pauseOtherVideos("video2"); // Pause other videos
 
   if (video2.paused) {
     video2
@@ -38,10 +55,13 @@ document.querySelector(".clickable2").addEventListener("click", () => {
   }
 });
 
+// Event listener for the third video
 document.querySelector(".clickable3").addEventListener("click", () => {
   const video3 = document.querySelector("#video3");
 
   console.log("Video 3 interactive box clicked!"); // Confirm interaction
+
+  pauseOtherVideos("video3"); // Pause other videos
 
   if (video3.paused) {
     video3
@@ -58,6 +78,7 @@ document.querySelector(".clickable3").addEventListener("click", () => {
   }
 });
 
+// A-Frame component remains the same
 AFRAME.registerComponent("follow-camera", {
   tick: function () {
     const camera = document.querySelector("#camera");
